@@ -6,7 +6,7 @@ import { addTododata } from '../../reducers/todoReducer';
 const Todo = () => {
     const [change, setchange] = useState("");
     const dispatch =useDispatch()
-   // const arr=useSelector(selectAllTodo)
+   // const arr=useSelector(selectAllTodo) reselect with Selector
    const arr=useSelector(state=>state.todo.data)
     const addData = ()=>{
         dispatch(addTododata(change))
