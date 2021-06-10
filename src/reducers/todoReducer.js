@@ -1,35 +1,30 @@
-import {createSlice} from "@reduxjs/toolkit"
-
-export const todoSlice=createSlice({
-    name:"todos",
-    initialState:{
-        data:[{
-            name: "Milton",
-            type: "cat",
-            age: 4
-          },
-          {
-            name: "Sammy",
-            type: "dog",
-            age: 2
-          },
-          {
-            name: "Joseph",
-            type: "turtle",
-            age: 34
-          },
-          {
-            name: "Simon",
-            type: "dog",
-            age: 8
-          }]
+import { createSlice } from "@reduxjs/toolkit";
+import { getUsers, postUsers } from "../actions/userFetch";
+export const todoSlice = createSlice({
+  name: "todos",
+  initialState: {
+    data: [],
+  },
+  reducers: {
+    addTododata: (state, action) => {
+     // console.log(action);
+      state.data = [
+        ...state.data,
+        { title: action.payload, type: "", age: null },
+      ];
     },
-    reducers:{
-        addTododata:(state,action)=>{
-            console.log(action)
-            state.data=[...state.data,{name:action.payload,type:"",age:null}]
-        }
-    }
-})
-export const {addTododata} = todoSlice.actions
-export default todoSlice.reducer
+  },
+  extraReducers: {
+    [getUsers.pending]:(state,action)=>{
+    },
+    [getUsers.fulfilled]:(state,action)=>{
+      state.data=[...action.payload]
+    },
+    [postUsers.pending]: (state, action) => {},
+    [postUsers.fulfilled]: (state, action) => {
+      state.data = [...state.data,action.payload];
+    },
+  },
+});
+export const { addTododata } = todoSlice.actions;
+export default todoSlice.reducer;
