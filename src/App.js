@@ -7,9 +7,9 @@ import Richtext from "./components/Richtext";
 function App() {
   return (
     <div className="App">
-      <Counter />
-      <Todo />
-      {/* <Richtext/> */}
+      {/* <Counter />
+      <Todo /> */}
+      <Richtext/>
     </div>
   );
 }
